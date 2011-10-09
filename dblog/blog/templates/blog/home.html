@@ -7,17 +7,21 @@
 {% block content %}
   {% if entries %}
     {% for entry in entries %}
-      <div class="entry">
-        <div class="clearfix">
+      <div class="hentry">
+        <div class="entry-title">
           {% if entry.is_new %}
             <span class="newtag label success">New</span>
           {% endif %}
-          <h2 class="title"><a href="/{{ entry.slug }}">{{ entry.title }}</a> <small>{{ entry.created|naturalday }}</small></h2>
+          <h2><a href="/{{ entry.slug }}">{{ entry.title }}</a> <small>{{ entry.created|naturalday }}</small></h2>
         </div>
-        {{ entry.body|markdown }}
-        {% get_comment_count for entry as comment_count %}
-        <div><a href="/{{ entry.slug }}">{{ comment_count }} Comments</a></div>
-      </div> 
+        <div class="entry-content">
+          {{ entry.body|markdown }}
+        </div>
+        <div class="byline author vcard">
+          {% get_comment_count for entry as comment_count %}
+          posted by <span class="fn">{{ entry.author.first_name }} {{entry.author.last_name}}</span> | <a href="/{{ entry.slug }}">{{ comment_count }} Comments</a>
+        </div> 
+      </div>
     {% endfor %}
   {% endif %}
   <div class="pagination">

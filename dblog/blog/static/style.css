@@ -23,16 +23,43 @@
   color: #BFBFBF;
 }
 
-.comment .body {
+.hentry .entry-content {
+  margin: 0 0 0 8px;
+}
+
+.comment .entry-content {
   padding: 0 0 0 8px;
   margin: 8px 0 8px 0;
   border-bottom: 1px solid #CCC;
 }
 
-.title a {
+.entry .meta {
   color: #404040;
 }
 
-.title a:hover {
+.entry-title a {
+  color: #404040;
+}
+
+.entry-title a:hover {
   text-decoration: none;
 }
+
+.rdbWrapper {
+  margin-top: 10px;
+  float: right;
+  width: 155px;
+}
+
+#admin_toast {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+}
+
+.btn {
+  margin: 8px 0 0 0;
+  display: block;
+}
+
