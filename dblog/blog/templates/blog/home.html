@@ -27,7 +27,7 @@
   {% if entry_page.has_other_pages %}
     <div class="pagination">
       <ul>
-        <li class="prev {% if not entry_page.has_previous %}disabled{% endif %}"><a href="?page={{ entry_page.prev_page_numer }}">&larr; Previous</a></li>
+        <li class="prev {% if not entry_page.has_previous %}disabled{% endif %}"><a href="?page={{ entry_page.previous_page_numer }}">&larr; Previous</a></li>
         {% for page_num in page_range %}
           <li {% if page_num = current_page %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
         {% endfor %}
