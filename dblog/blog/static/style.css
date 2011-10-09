@@ -1,5 +1,4 @@
 #content {
-  margin-top: 40px;
 }
 
 .newtag {
@@ -24,17 +23,21 @@
 }
 
 .hentry .entry-content {
-  margin: 0 0 0 8px;
+  margin: 0 8px 0 8px;
 }
 
 .comment .entry-content {
-  padding: 0 0 0 8px;
+  padding: 0 8px 0 8px;
   margin: 8px 0 8px 0;
   border-bottom: 1px solid #CCC;
 }
 
 .entry .meta {
   color: #404040;
+}
+
+.entry-title, .comment_container {
+  margin-top: 40px;
 }
 
 .entry-title a {
@@ -49,6 +52,8 @@
   margin-top: 10px;
   float: right;
   width: 155px;
+  height: 24px;
+  overflow: hidden;
 }
 
 #admin_toast {
