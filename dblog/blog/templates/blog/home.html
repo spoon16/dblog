@@ -5,8 +5,8 @@
 {% load comments %}
 
 {% block content %}
-  {% if entries %}
-    {% for entry in entries %}
+  {% if entry_page.object_list %}
+    {% for entry in entry_page.object_list %}
       <div class="hentry">
         <div class="entry-title">
           {% if entry.is_new %}
@@ -24,12 +24,15 @@
       </div>
     {% endfor %}
   {% endif %}
-  <div class="pagination">
-    <ul>
-      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-      <li class="active class="active""><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li class="next"><a href="#">Next &rarr;</a></li>
-    </ul>
-  </div>
+  {% if entry_page.has_other_pages %}
+    <div class="pagination">
+      <ul>
+        <li class="prev {% if not entry_page.has_previous %}disabled{% endif %}"><a href="?page={{ entry_page.prev_page_numer }}">&larr; Previous</a></li>
+        {% for page_num in page_range %}
+          <li {% if page_num = current_page %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+        {% endfor %}
+        <li class="next {% if not entry_page.has_next %}disabled{% endif %}"><a href="?page={{ entry_page.next_page_number  }}">Next &rarr;</a></li>
+      </ul>
+    </div>
+  {% endif %}
 {% endblock content %}
