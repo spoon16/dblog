@@ -36,7 +36,7 @@
                 <span class="fn n"><a class="url" href="{{ comment.user_url }}" rel="external nofollow">{{ comment.user_name }}</a></span>
               </div>
               <div class="meta">{{ comment.submit_date|naturalday }}</div>
-              <div class="entry-content">{{ comment.comment|markdown }}</div>
+              <div class="entry-content">{{ comment.comment|markdown:"safe" }}</div>
             </div>
           {% endfor %}
         {% endif %}
