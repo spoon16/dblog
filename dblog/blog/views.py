@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
   entry_list = Entry.objects.filter(state='P').order_by('-published')
-  return render_to_response('blog/home.html', { 'entries': entry_list })
+  return render_to_response('blog/home.html', RequestContext(request, { 'entries': entry_list }))
 
 def entry(request, slug):
   logger.debug('slug: %s' % slug)

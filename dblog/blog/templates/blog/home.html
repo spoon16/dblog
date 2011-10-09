@@ -8,11 +8,24 @@
   {% if entries %}
     {% for entry in entries %}
       <div class="entry">
-        <h2 class="title">{{ entry.title }}<small>{{ entry.created|naturalday }}</small></h2>
+        <div class="clearfix">
+          {% if entry.is_new %}
+            <span class="newtag label success">New</span>
+          {% endif %}
+          <h2 class="title"><a href="/{{ entry.slug }}">{{ entry.title }}</a> <small>{{ entry.created|naturalday }}</small></h2>
+        </div>
         {{ entry.body|markdown }}
         {% get_comment_count for entry as comment_count %}
         <div><a href="/{{ entry.slug }}">{{ comment_count }} Comments</a></div>
       </div> 
     {% endfor %}
   {% endif %}
+  <div class="pagination">
+    <ul>
+      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+      <li class="active class="active""><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li class="next"><a href="#">Next &rarr;</a></li>
+    </ul>
+  </div>
 {% endblock content %}

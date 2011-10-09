@@ -8,7 +8,12 @@
 {% block content %}
   {% if entry %}
     <div class="entry_container">
-      <h2 class="title">{{ entry.title }}<small>{{ entry.created|naturalday }}</small></h2>
+      <div class="clearfix">
+        {% if entry.is_new %}
+          <span class="newtag label success">New</span>
+        {% endif %}
+        <h2 class="title">{{ entry.title }} <small>{{ entry.created|naturalday }}</small></h2>
+      </div>
       <div class="entry">
         {{ entry.body|markdown }}
       </div>
@@ -18,8 +23,11 @@
         {% get_comment_list for entry as comments %}
         {% for comment in comments %}
           <div class="comment">
-            <img class="gravatar" src="{% gravatar_href comment.user_email %}" />
-            <h5 class="author"><a href="{{ comment.user_url }}">{{ comment.user_name }}</a><small>{{ comment.submit_date|naturalday }}</small></h5>
+            <div class="author vcard">
+              <img class="photo" src="{% gravatar_href comment.user_email %}" />
+              <span class="fn n"><a class="url" href="{{ comment.user_url }}" rel="external nofollow">{{ comment.user_name }}</a></span>
+            </div>
+            <div class="meta">{{ comment.submit_date|naturalday }}</div>
             <div class="body">{{ comment.comment|markdown }}</div>
           </div>
         {% endfor %}

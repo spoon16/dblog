@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from datetime import datetime, timedelta
 
 class Document(models.Model):
   STATE_CHOICES = (
@@ -15,6 +15,12 @@ class Document(models.Model):
   author = models.ForeignKey(User)
   body = models.TextField()
   state = models.CharField(max_length=1, choices=STATE_CHOICES)
+
+  @property
+  def is_new(self):
+    if (datetime.now() - self.created) < timedelta(hours = 6):
+      return True
+    return False
 
   class Meta:
     abstract = True

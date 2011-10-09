@@ -1,0 +1,38 @@
+#content {
+  margin-top: 40px;
+}
+
+.newtag {
+  float: right;
+  margin-top: 10px;
+}
+
+.comment .author {
+  position: relative;
+  padding: 11px 0 0 58px;
+}
+
+.comment .author .photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.comment .meta {
+  padding: 0 0 0 58px;
+  color: #BFBFBF;
+}
+
+.comment .body {
+  padding: 0 0 0 8px;
+  margin: 8px 0 8px 0;
+  border-bottom: 1px solid #CCC;
+}
+
+.title a {
+  color: #404040;
+}
+
+.title a:hover {
+  text-decoration: none;
+}

@@ -8,4 +8,4 @@ register = template.Library()
 
 @register.simple_tag
 def gravatar_href(email, size=48):
-  return 'http://www.gravatar.com/avatar/%s.jpg' % hashlib.md5(email.strip().lower()).hexdigest()
+  return 'http://www.gravatar.com/avatar/%s.jpg?s=%d&d=identicon' % (hashlib.md5(email.strip().lower()).hexdigest(), size)
