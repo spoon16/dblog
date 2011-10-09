@@ -1,29 +1,18 @@
+{% extends "blog/base.html" %}
+
 {% load humanize %}
 {% load markup %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-    
-    <!-- scripts -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.1.7/underscore-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.5.3/backbone-min.js"></script>
+{% load comments %}
 
-    <!-- styles -->
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
-  </head>
-  <body>
-    <div id="content" class="container">
-      {% if entries %}
-        {% for entry in entries %}
-          <div class="entry">
-            <h2>{{ entry.title }}<small>{{ entry.created|naturalday }}</small></h2>
-            <p>{{ entry.body|markdown }}</p>
-            <div><a href="/{{ entry.slug }}">Permalink</a></div>
-          </div> 
-        {% endfor %}
-      {% endif %}
-    </div>
-  </body>
-</html>
+{% block content %}
+  {% if entries %}
+    {% for entry in entries %}
+      <div class="entry">
+        <h2 class="title">{{ entry.title }}<small>{{ entry.created|naturalday }}</small></h2>
+        {{ entry.body|markdown }}
+        {% get_comment_count for entry as comment_count %}
+        <div><a href="/{{ entry.slug }}">{{ comment_count }} Comments</a></div>
+      </div> 
+    {% endfor %}
+  {% endif %}
+{% endblock content %}
