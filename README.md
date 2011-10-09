@@ -11,7 +11,7 @@ Your task, should you choose to accept, is to build a simple blogging site using
 **done, heroku shared DB is postgres**
 - the blog should allow multple users to log in  
 **done, via normal django authentication/admin**
-- staff users can write blog articles
+- staff users can write blog articles  
 **done, any user in 'editors' group can write articles and admin comments (edit/delete)**
 - all users can comment on blog articles  
 **done, used Django Comments**
