@@ -37,7 +37,8 @@ Completing any of the following, in addition to the tasks above, will not only m
 **done, w/ django paginator**
 - AJAX form submission  
 **TODO**
-- any caching to reduce DB lookups
+- any caching to reduce DB lookups  
+**TODO**
 - support comment threading
 - support thumbnails for users  
 **done w/ gravatar**
