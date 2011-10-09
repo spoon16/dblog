@@ -15,6 +15,8 @@ def home(request):
     current_page = int(request.GET.get('page'))
   except TypeError:
     current_page = 1
+  except ValueError:
+    current_page = 1
 
   try:
     entry_page = p.page(current_page)
