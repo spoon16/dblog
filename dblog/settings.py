@@ -1,4 +1,5 @@
 # Django settings for dblog project.
+import django.conf.global_settings as DEFAULT_SETTINGS
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -90,12 +91,17 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+      'django.core.context_processors.request',
+    )
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'dblog.urls'
@@ -115,8 +121,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.comments',
+    'django.contrib.humanize',
+    'django.contrib.markup',
+    'debug_toolbar',
     'blog',
 )
+
+# Debug Toolbar Configuration
+INTERNAL_IPS = ('127.0.0.1',)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

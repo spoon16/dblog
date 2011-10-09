@@ -1,5 +1,4 @@
-from blog.models import Post, Comment
+from blog.models import Entry
 from django.contrib import admin
 
-admin.site.register(Post)
-admin.site.register(Comment)
+admin.site.register(Entry)

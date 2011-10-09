@@ -1,21 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Post(models.Model):
+
+class Document(models.Model):
+  STATE_CHOICES = (
+      ('P', 'Published'),
+      # ('W', 'Pending'),
+      ('D', 'Draft'),
+      # ('T', 'Trashed'),
+    )
   slug = models.SlugField()
-  date = models.DateTimeField(auto_now=True)
+  created = models.DateTimeField(auto_now=True)
+  last_updated = models.DateTimeField(auto_now=True, verbose_name="Last Updated")
+  author = models.ForeignKey(User)
+  body = models.TextField()
+  state = models.CharField(max_length=1, choices=STATE_CHOICES)
+
+  class Meta:
+    abstract = True
+
+class Entry(Document):
   title = models.CharField(max_length=511)
-  body = models.TextField()
+  published = models.DateTimeField(auto_now=True)
 
-  def __unicode__(self):
-    return '\nDate: %s\nSlug: %s\nTitle: %s\nBody: %s' % (self.date, self.slug, self.title, self.body)
-
-class Comment(models.Model):
-  date = models.DateTimeField(auto_now_add=True)
-  name = models.CharField(max_length=255, verbose_name="Full Name")
-  email = models.EmailField(verbose_name="Email Address")
-  ip = models.IPAddressField(editable=False, verbose_name="IP Address")
-  body = models.TextField()
-  post = models.ForeignKey(Post)
-
-  def __unicode__(self):
-    return '\nDate: %s\nName: %s\nEmail: %s\nIP: %s\nBody: %s' % (self.date, self.name, self.email, self.ip, self.body)
