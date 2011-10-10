@@ -40,9 +40,11 @@ Completing any of the following, in addition to the tasks above, will not only m
 - any caching to reduce DB lookups  
 **TODO**
 - support comment threading
+**thinking about just using Facebook for this**
 - support thumbnails for users  
 **done w/ gravatar**
 - add a user profile and place for them to edit
+**authors can use /admin/ and if using Facebook than don't need this for readers**
 - fancy CSS  
 **done w/ twitter bootstrap (not a CSS expert, but... it's functional)**
 
