@@ -73,3 +73,11 @@
   display: block;
 }
 
+header h2 {
+  display: inline;
+}
+
+header time {
+  font-size: 14px;
+  color: #BFBFBF;
+}

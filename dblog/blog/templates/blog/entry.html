@@ -7,22 +7,7 @@
 
 {% block content %}
   {% if entry %}
-      <div class="hentry">
-        <div class="entry-title">
-          {% if entry.is_new %}
-            <span class="newtag label success">New</span>
-          {% endif %}
-          <div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="0" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js";
-            s.parentNode.insertBefore(rdb, s); })();</script>
-          <h2>{{ entry.title }} <small>{{ entry.created|naturalday }}</small></h2>
-        </div>
-        <div class="entry-content">
-          {{ entry.body|markdown }}
-        </div>
-        <div class="byline author vcard">
-          posted by <span class="fn">{{ entry.author.first_name }} {{entry.author.last_name}}</span>
-        </div> 
-      </div>
+    {% include "blog/article_partial.html" with detail=detail entry=entry only %}
       <div class="comment_container">
         {% get_comment_count for entry as comment_count %}
         {% if comment_count > 0 %}
@@ -32,7 +17,7 @@
             <div class="comment hentry">
               <div class="byline author vcard">
                 <img class="photo" src="{% gravatar_href comment.user_email %}" />
-                <span class="fn n"><a class="url" href="{{ comment.user_url }}" rel="external nofollow">{{ comment.user_name }}</a></span>
+                <a class="url" href="{{ comment.user_url }}" rel="external nofollow"><span class="fn n">{{ comment.user_name }}</span></a>
               </div>
               <div class="meta">{{ comment.submit_date|naturalday }}</div>
               <div class="entry-content">{{ comment.comment|markdown:"safe" }}</div>

@@ -34,5 +34,5 @@ def entry(request, slug):
   except Entry.DoesNotExist:
     raise Http404
 
-  return render_to_response('blog/entry.html', RequestContext(request, { 'entry': entry }))
+  return render_to_response('blog/entry.html', RequestContext(request, { 'entry': entry, 'detail': True }))
 
