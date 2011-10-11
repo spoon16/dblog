@@ -8,41 +8,15 @@
 {% block content %}
   {% if entry %}
     {% include "blog/article_partial.html" with detail=detail entry=entry only %}
-      <div class="comment_container">
-        {% get_comment_count for entry as comment_count %}
-        {% if comment_count > 0 %}
-          <h3>{{ comment_count }} Comments</h3>
-          {% get_comment_list for entry as comments %}
-          {% for comment in comments %}
-            <div class="comment hentry">
-              <div class="byline author vcard">
-                <img class="photo" src="{% gravatar_href comment.user_email %}" />
-                <a class="url" href="{{ comment.user_url }}" rel="external nofollow"><span class="fn n">{{ comment.user_name }}</span></a>
-              </div>
-              <div class="meta">{{ comment.submit_date|naturalday }}</div>
-              <div class="entry-content">{{ comment.comment|markdown:"safe" }}</div>
-            </div>
-          {% endfor %}
-        {% endif %}
-        <h3>Post a Comment</h3>
-        {% get_comment_form for entry as form %}
-        <form class="form-stacked" action="{% comment_form_target %}" method="post">
-          <fieldset>
-            {% csrf_token %}
-            {{ form.content_type }}
-            {{ form.object_pk }}
-            {{ form.timestamp }}
-            {{ form.security_hash }}
-            <input type="hidden" name="next" value="{{ request.path }}" />
-            <div style="display:none"><label for="id_honeypot" />{{ form.honeypot }}</div>
-            <label for="id_name">Name</label>{{ form.name }}
-            <label for="id_email">Email</label>{{ form.email }}
-            <label for="id_url">Web Site</label>{{ form.url }}
-            <label for="id_comment">Comment</label>{{ form.comment }}
-            <input type="submit" class="btn success" value="Post" />
-          </fieldset>
-        </form>
-      </div>
-    </div> 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="fb-comments" data-href="http://{{ request.META.HTTP_HOST }}{% url blog.views.entry entry.slug %}" data-num-posts="5" data-width="930"></div>
   {% endif %}
 {% endblock content %}
