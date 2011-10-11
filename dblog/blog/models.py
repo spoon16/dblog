@@ -10,8 +10,8 @@ class Document(models.Model):
       # ('T', 'Trashed'),
     )
   slug = models.SlugField()
-  created = models.DateTimeField(auto_now=True)
-  last_updated = models.DateTimeField(auto_now=True, verbose_name="Last Updated")
+  created = models.DateTimeField()
+  last_updated = models.DateTimeField(verbose_name="Last Updated")
   author = models.ForeignKey(User)
   body = models.TextField()
   state = models.CharField(max_length=1, choices=STATE_CHOICES)
