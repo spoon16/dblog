@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def home(request):
-  entries = Entry.objects.filter(state='P').order_by('-published')
+  entries = Entry.objects.filter(state='P').order_by('-created')
   p = Paginator(entries, 2)
 
   try:
