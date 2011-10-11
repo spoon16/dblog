@@ -16,6 +16,6 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <div class="fb-comments" data-href="http://{{ request.META.HTTP_HOST }}{% url blog.views.entry entry.slug %}" data-num-posts="5" data-width="930"></div>
+    <div class="fb-comments" data-href="http://{{ request.META.HTTP_HOST }}{% url blog.views.entry entry.slug %}" data-num-posts="5" data-width="940"></div>
   {% endif %}
 {% endblock content %}
