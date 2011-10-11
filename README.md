@@ -1,3 +1,8 @@
+Install/Setup Instructions
+--------------------------
+
+https://github.com/spoon16/dblog/blob/master/INSTALL.md
+
 Build a working blog site
 -------------------------
 
