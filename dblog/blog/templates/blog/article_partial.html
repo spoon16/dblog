@@ -1,6 +1,5 @@
 {% load humanize %}
 {% load markup %}
-{% load comments %}
 
 <article class="hentry">
   <header>
@@ -18,8 +17,7 @@
     {{ entry.body|markdown }}
   </div>
   <div class="byline author vcard">
-    {% get_comment_count for entry as comment_count %}
     posted by <span class="fn">{{ entry.author.first_name }} {{entry.author.last_name}}</span>
-    {% if not detail %} | <a href="/{{ entry.slug }}">{{ comment_count }} Comments</a>{% endif %}
+    {% if not detail %} | <a href="/{{ entry.slug }}">Comments</a>{% endif %}
   </div>
 </article>
